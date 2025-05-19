@@ -2,7 +2,13 @@
 
 public class ColoredPoint : Point
 {
-    public string Color { get; set; }
+    private string _color;
+
+    public string Color
+    {
+        get => _color;
+        set => _color = value ?? "Black"; // BUG-05 FIX: предотвращаем null
+    }
 
     public ColoredPoint() : base()
     {
@@ -11,7 +17,6 @@ public class ColoredPoint : Point
 
     public ColoredPoint(double x, double y, string color) : base(x, y)
     {
-        Color = color;
+        Color = color; // будет обработан через сеттер
     }
 }
-
